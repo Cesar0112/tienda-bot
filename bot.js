@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 bot.start((ctx) => {
   const webAppUrl = process.env.RENDER_URL;
   
-ctx.reply('¡Bienvenido a la tienda!', {
+ctx.reply('Â¡Bienvenido a la tienda!', {
     reply_markup: {
       inline_keyboard: [
         [{ text: 'Abrir tienda ??', web_app: { url: webAppUrl } }]
@@ -40,7 +40,7 @@ ctx.reply('¡Bienvenido a la tienda!', {
 // Recibir pedido desde la mini app
 
 bot.on('web_app_data', (ctx) => {
-  const data = JSON.parse(ctx.webAppData.data);
+  const data = ctx.webAppData.data;
   
 ctx.reply(`?? Pedido recibido:\n${JSON.stringify(data, null, 2)}`);
 
@@ -50,5 +50,6 @@ ctx.reply(`?? Pedido recibido:\n${JSON.stringify(data, null, 2)}`);
 // Iniciar bot y servidor
 
 bot.launch();
+
 
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
